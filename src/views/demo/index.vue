@@ -1,7 +1,7 @@
 <template>
   <div>
     啦啦啦 - demo
-    <x-button class="lalala" @click.native="handleClick">啦啦啦</x-button>
+    <x-button type="primary" class="lalala" @click.native="handleClick">啦啦啦</x-button>
     <div>
       <group>
         <cell title="title" value="value"></cell>
@@ -67,8 +67,6 @@
   height: 78px;
   line-height: 78px;
   border-radius: 10px;
-  background-color: red;
-  color: #fff;
   text-align: center;
   font-size: 32px;
 }
