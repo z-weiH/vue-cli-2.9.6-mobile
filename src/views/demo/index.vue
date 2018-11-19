@@ -1,12 +1,16 @@
 <template>
   <div>
     啦啦啦 - demo
-    <button @click="handleClick">啦啦啦</button>
+    <x-button class="lalala" @click.native="handleClick">啦啦啦</x-button>
     <div>
       <group>
         <cell title="title" value="value"></cell>
       </group>
       <x-button @click.native="show13 = true" plain type="primary"> Close Me </x-button>
+    </div>
+
+    <div>
+      <p>vant</p>
     </div>
 
     <popup v-model="show13" position="bottom" max-height="50%">
@@ -44,6 +48,15 @@
 
 <style lang="scss" scoped>
 
-
+.lalala{
+  width: 224px;
+  height: 78px;
+  line-height: 78px;
+  border-radius: 10px;
+  background-color: red;
+  color: #fff;
+  text-align: center;
+  font-size: 32px;
+}
 
 </style>
