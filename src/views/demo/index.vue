@@ -49,7 +49,7 @@
         response_type: 'code',
         scope: 'snsapi_base',
       };
-      window.location.replace(Tencent_WxCode_api + qs.stringify(loginConfig) + '#wechat_redirect');
+      // window.location.replace(Tencent_WxCode_api + qs.stringify(loginConfig) + '#wechat_redirect');
       // 微信 静默授权获取 openId 逻辑 end
     },
     methods : {
