@@ -1,0 +1,24 @@
+// 重置 ui库 样式
+@import './uiReset.scss';
+
+// 通用样式
+@import './common.scss';
+
+// 字体样式
+@import '../font/iconfont/iconfont.css';
+
+// css reset
+@import './reset.scss';
+
+
+html{
+  height: 100%;
+}
+body{
+  margin: 0;
+  height: 100%;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  #app{
+    height: 100%;
+  }
+}
