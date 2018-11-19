@@ -39,6 +39,10 @@ Vue.prototype.$cookie = cookie;
   const vConsole = new VConsole();
 //}
 
+// 移除移动端点击延迟
+const FastClick = require('fastclick');
+FastClick.attach(document.body);
+
 
 /* eslint-disable no-new */
 new Vue({
