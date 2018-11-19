@@ -26,6 +26,7 @@
 
 <script>
   import { Group, Cell , Popup , XButton } from 'vux'
+  import qs from 'qs'
   export default {
     data() {
       return {
@@ -37,6 +38,19 @@
       Cell,
       Popup,
       XButton,
+    },
+    mounted() {
+      // 微信 静默授权获取 openId 逻辑 start
+      let Tencent_WxCode_api = 'https://open.weixin.qq.com/connect/oauth2/authorize?';
+      let domain_src = 'http://mobiletest.arbexpress.cn'; // 获取openId后的 回调地址
+      let loginConfig = {
+        appid: 'wx9f95c4206c9c49fc',
+        redirect_uri: domain_src + '/mobile/band/openid/query_gzh.htm',
+        response_type: 'code',
+        scope: 'snsapi_base',
+      };
+      window.location.replace(Tencent_WxCode_api + qs.stringify(loginConfig) + '#wechat_redirect');
+      // 微信 静默授权获取 openId 逻辑 end
     },
     methods : {
       handleClick() {
