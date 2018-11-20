@@ -41,7 +41,7 @@
       XButton,
     },
     mounted() {
-      let openId = getUrlParam('code' || 'openId');
+      let openId = 123 || getUrlParam('code' || 'openId');
       if(!openId) {
         // 微信 静默授权获取 openId 逻辑 start
         let Tencent_WxCode_api = 'https://open.weixin.qq.com/connect/oauth2/authorize?';
@@ -55,7 +55,7 @@
         window.location.replace(Tencent_WxCode_api + qs.stringify(loginConfig) + '#wechat_redirect');
         // 微信 静默授权获取 openId 逻辑 end
       }else{
-        alert(openId);
+        console.log(openId);
       }
     },
     methods : {
