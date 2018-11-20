@@ -43,6 +43,10 @@ Vue.prototype.$cookie = cookie;
 const FastClick = require('fastclick');
 FastClick.attach(document.body);
 
+// 校验
+import Validator from 'vue-smart-validator'
+Vue.use(new Validator());
+
 
 /* eslint-disable no-new */
 new Vue({

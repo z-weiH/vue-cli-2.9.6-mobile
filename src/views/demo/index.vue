@@ -1,37 +1,41 @@
 <template>
   <div>
-    啦啦啦 - demo
-    <x-button type="primary" class="lalala" @click.native="handleClick">啦啦啦</x-button>
-    <div>
-      <group>
-        <cell title="title" value="value"></cell>
-      </group>
-      <x-button @click.native="show13 = true" plain type="primary"> Close Me </x-button>
-    </div>
-
-    <div>
-      <p>vant</p>
-    </div>
-
-    <popup v-model="show13" position="bottom" max-height="50%">
-      <group>
-        <cell v-for="i in 20" :key="i" :title="i"></cell>
-      </group>
-      <div style="padding: 15px;">
-        <x-button @click.native="show13 = false" plain type="primary"> Close Me </x-button>
-      </div>
-    </popup>
+    <group>
+      <x-input title="用户名：" v-model.trim="ruleForm.login" v-validator="rules.login">
+        <span class="error" slot="right">{{$validator.firstError('ruleForm.login')}}</span>
+      </x-input>
+    </group>
+    <group>
+      <x-input type="password" title="密码：" v-model.trim="ruleForm.password" v-validator="rules.password">
+        <span class="error" slot="right">{{$validator.firstError('ruleForm.password')}}</span>
+      </x-input>
+    </group>
+    <group>
+      <x-button @click.native="handleSubmit" type="primary">提交</x-button>
+    </group>
   </div>
 </template>
 
 <script>
-  import { Group, Cell , Popup , XButton } from 'vux'
+  import { Group, Cell , Popup , XButton, XInput } from 'vux'
   import { getUrlParam } from '@/assets/js/utils'
   import qs from 'qs'
   export default {
     data() {
       return {
-        show13 : false,
+        ruleForm : {
+          login : '',
+          password : '',
+        },
+        rules : {
+          login : [
+            {rule : 'required' , message : '请输入用户名' , trigger : 'blur'},
+          ],
+          password : [
+            {rule : 'required' , message : '请输入密码' , trigger : 'blur'},
+            {rule : val => val.length > 5, message : '密码不能少于6位' , trigger : 'blur'},
+          ],
+        },
       }
     },
     components: {
@@ -39,6 +43,7 @@
       Cell,
       Popup,
       XButton,
+      XInput,
     },
     mounted() {
       let openId = 123 || getUrlParam('code' || 'openId');
@@ -59,8 +64,11 @@
       }
     },
     methods : {
-      handleClick() {
-        console.log('啦啦啦');
+      handleSubmit() {
+        let success = Object.keys(this.$validator.check().getError()).length === 0;
+        if(success) {
+          alert('提交数据');
+        }
       },
     },
   }
@@ -75,6 +83,10 @@
   border-radius: 10px;
   text-align: center;
   font-size: 32px;
+}
+
+.error{
+  color: red;
 }
 
 </style>
