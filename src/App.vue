@@ -10,6 +10,7 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="less">
+  // vux reset样式
+  @import '~vux/src/styles/reset.less';
 </style>
