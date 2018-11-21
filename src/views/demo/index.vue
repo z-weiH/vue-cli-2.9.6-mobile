@@ -46,21 +46,21 @@
       XInput,
     },
     mounted() {
-      let openId = 123 || getUrlParam('code' || 'openId');
+      let openId = getUrlParam('code');
       if(!openId) {
-        // 微信 静默授权获取 openId 逻辑 start
+        // 微信 获取 openId 逻辑 start
         let Tencent_WxCode_api = 'https://open.weixin.qq.com/connect/oauth2/authorize?';
         let domain_src = 'http://zw.tunnel.qydev.com'; // 获取code后的回调地址  ， 后端根据code获取openId 再做重定向操作跳转至前端url地址
         let loginConfig = {
           appid: 'wxb785be721e2989f3',
           redirect_uri: domain_src + '/mobile/band/openid/query_gzh.htm',
           response_type: 'code',
-          scope: 'snsapi_base',
+          scope: 'snsapi_userinfo', // snsapi_base - 静默授权 ， snsapi_userinfo - 弹窗授权
         };
         window.location.replace(Tencent_WxCode_api + qs.stringify(loginConfig) + '#wechat_redirect');
-        // 微信 静默授权获取 openId 逻辑 end
+        // 微信 获取 openId 逻辑 end
       }else{
-        console.log(openId);
+        console.log('code:',openId);
       }
     },
     methods : {
