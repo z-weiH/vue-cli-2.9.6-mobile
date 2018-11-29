@@ -17,6 +17,8 @@
 </template>
 
 <script>
+  // 移动授权 demo URL
+  let yd = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx47920b8bb3c5b7c3&redirect_uri=https://wx.jxict.cn/wechat-login-center-weixin/security/WebUserinfoAuthenticationServlet?redirectUrl=aHR0cHM6Ly93eC5qeGljdC5jbi93ZWNoYXQtbG9naW4tY2VudGVyLXdlaXhpbi91c2VyL2xvZ2luL3dlaXhpbkxvZ2luQXV0aGVudGljYXRpb24uYWN0aW9uP2Vycm9yX3JldHVybl9iYWNrPWZhbHNlJnJlZGlyZWN0VXJsPWFIUjBjSE02THk5M2VDNXFlR2xqZEM1amJpOHZkMlZwZUdsdUxYTnpieTFzYjJkcGJpOXNiMmRwYmk5blpYUlZjMlZ5U1c1bWJ6OWxjbkp2Y2w5eVpYUjFjbTVmWW1GamF6MW1ZV3h6WlNaeVpXUnBjbVZqZEZWeWJEMW9kSFJ3Y3pvdkwzZGhjQzVxZUM0eE1EQTROaTVqYmk5b2RXa3ZiRzluYVc0dmQzaE1iMmRwYmo5aVlXTnJkWEpzUFdGSVVqQmpTRTAyVEhrNU0xbFlRWFZoYm1kMVRWUkJkMDlFV1hWWk1qUjJZVWhXY0V3eVVtaGlSMnhvWW0xamRtTnRWbXBhVjJ3eVdsWktiR016Vm5Oa1JEa3haRWN4Wm1NeU9URmpiVTVzVUZaa1dWa3lSbkJhUjBaMUptTnZiWEJoYm5sRGIyUmxQVEl3TVRZd016QXdNUT09JnJlZGlyZWN0Q291bnQ9MQ==&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
   import { Group, Cell , Popup , XButton, XInput } from 'vux'
   import { getUrlParam } from '@/assets/js/utils'
   import qs from 'qs'
