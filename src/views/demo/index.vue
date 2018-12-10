@@ -13,6 +13,8 @@
     <group>
       <x-button @click.native="handleSubmit" type="primary">提交</x-button>
     </group>
+
+    <x-button @click.native="$router.push('scroll')" style="margin-top:20px;">上拉刷新，下拉加载页面</x-button>
   </div>
 </template>
 
@@ -59,7 +61,7 @@
           response_type: 'code',
           scope: 'snsapi_userinfo', // snsapi_base - 静默授权 ， snsapi_userinfo - 弹窗授权
         };
-        window.location.replace(Tencent_WxCode_api + qs.stringify(loginConfig) + '#wechat_redirect');
+        //window.location.replace(Tencent_WxCode_api + qs.stringify(loginConfig) + '#wechat_redirect');
         // 微信 获取 openId 逻辑 end
       }else{
         console.log('code:',openId);

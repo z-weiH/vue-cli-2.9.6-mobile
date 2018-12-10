@@ -1,0 +1,55 @@
+<template>
+  <div class="scroll-box">
+    <scroll
+      @pullingDown="pullingDown"
+      :data="list"
+    >
+      <div>
+        <p @click="handleClick(index)" v-for="(item,index) in list" :key="index">{{item}}</p>
+      </div>
+    </scroll>
+  </div>
+</template>
+
+<script>
+  import scroll from '@/components/scroll.vue'
+  import Vue from 'vue'
+  import  { ToastPlugin } from 'vux'
+  Vue.use(ToastPlugin);
+  export default {
+    components : {
+      scroll,
+    },
+    data() {
+      return {
+        list : [],
+      }
+    },
+    mounted() {
+      for(let i = 0 ; i <= 100 ; i ++) {
+        this.list.push(i);
+      }
+    },
+    methods : {
+      pullingDown(next) {
+        setTimeout(() => {
+          next();
+          this.$vux.toast.show({
+            text : '刷新成功',
+            type : 'text',
+            position : 'top',
+          });
+        },2000);
+      },
+    },
+  }
+</script>
+
+<style lang="scss" scoped>
+
+.scroll-box{
+  height: 100%;
+  font-size: 24px;
+}
+
+</style>

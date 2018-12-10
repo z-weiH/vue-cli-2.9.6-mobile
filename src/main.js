@@ -35,8 +35,8 @@ Vue.prototype.$cookie = cookie;
 
 // 引入 vconsole
 //if(process.env.NODE_ENV === 'development') {
-  let VConsole = require('vconsole');
-  const vConsole = new VConsole();
+  /* let VConsole = require('vconsole');
+  const vConsole = new VConsole(); */
 //}
 
 // 移除移动端点击延迟
