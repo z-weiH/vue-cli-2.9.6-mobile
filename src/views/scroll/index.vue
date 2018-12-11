@@ -2,10 +2,12 @@
   <div class="scroll-box">
     <scroll
       @pullingDown="pullingDown"
+      @pullingUp="pullingUp"
       :data="list"
+      ref="scroll"
     >
       <div>
-        <p @click="handleClick(index)" v-for="(item,index) in list" :key="index">{{item}}</p>
+        <p v-for="(item,index) in list" :key="index">{{item}}</p>
       </div>
     </scroll>
   </div>
@@ -39,6 +41,18 @@
             type : 'text',
             position : 'top',
           });
+        },2000);
+      },
+      pullingUp(next) {
+        setTimeout(() => {
+          if(Math.random() > 0.5) {
+            next();
+            for(let i = 0 ; i < 10 ; i ++) {
+              this.list.push(+ new Date() + i);
+            }
+          }else{
+            this.$refs.scroll.noData();
+          }
         },2000);
       },
     },
