@@ -38,7 +38,7 @@
     props : {
       // 1 下拉刷新为 text文字 2 canvas动画
       loadingType : {
-        default : 1,
+        default : 2,
         type : Number,
       },
       // 容器 height
