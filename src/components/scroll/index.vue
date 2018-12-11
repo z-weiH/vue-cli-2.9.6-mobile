@@ -7,8 +7,13 @@
         'line-height' : `${pullDownRefresh.stop}px` , 
         top : `-${pullDownRefresh.stop}px`
       }">
-        <span v-if="pullingDownStatus === 1">{{pullDownRefresh.text1}}</span>
-        <span v-if="pullingDownStatus === 2">{{pullDownRefresh.text2}}</span>
+        <template v-if="loadingType === 1">
+          <span v-if="pullingDownStatus === 1">{{pullDownRefresh.text1}}</span>
+          <span v-if="pullingDownStatus === 2">{{pullDownRefresh.text2}}</span>
+        </template>
+        <template v-if="loadingType === 2">
+          <bubble v-if="pullingDownStatus === 1 || pullingDownStatus === 2" :y="bubbleY"></bubble>
+        </template>
         <inline-loading v-if="pullingDownStatus === 3"></inline-loading>
       </div>
       <slot></slot>
@@ -28,8 +33,14 @@
 <script>
   import BScroll from 'better-scroll'
   import { InlineLoading } from 'vux'
+  import Bubble from './bubble.vue'
   export default {
     props : {
+      // 1 下拉刷新为 text文字 2 canvas动画
+      loadingType : {
+        default : 1,
+        type : Number,
+      },
       // 容器 height
       height : {
         default : '100%',
@@ -40,7 +51,7 @@
         default : () => {
           return {
             threshold: 50,
-            stop: 25,
+            stop: 80, // loadingType 为1时 该值最好为25
             text1 : '下拉刷新',
             text2 : '松开立即刷新',
           }
@@ -70,10 +81,12 @@
     },
     components : {
       InlineLoading,
+      Bubble,
     },
     data() {
       return {
         scroll : '',
+        bubbleY : '',
 
         pullingDownStatus : '', // 1 当前下拉刷新状态 2 当前松开立即刷新状态 3 loading状态
         pullingUpStatus : 1, // 1 加载更多 2 暂无数据 3 loading状态
@@ -134,7 +147,7 @@
               this.$nextTick(() => {
                 this.scroll.refresh();
               });
-            },500);
+            },1000);
           };
           this.$emit('pullingDown',next);
         });
@@ -150,6 +163,7 @@
             }else{
               this.pullingDownStatus = 1;
             }
+            this.bubbleY = Math.max(0, pos.y + -50);
           }
         });
       },

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import scroll from '@/components/scroll.vue'
+  import scroll from '@/components/scroll/index.vue'
   import Vue from 'vue'
   import  { ToastPlugin } from 'vux'
   Vue.use(ToastPlugin);
